@@ -352,30 +352,40 @@
   <div id="grainOverlay"></div>
 
   <script>
-  // --- Tooltip ---
-	const tooltip = document.getElementById('iconTooltip');
-	const iconTooltips = {
-	  infoIcon: 'About us',
-	  clearIcon: 'Clear canvas',
-	  saveIcon: 'Save doodle',
-	  contactIcon: 'Contact us'
-	};
-	Object.keys(iconTooltips).forEach(id => {
-	  const el = document.getElementById(id);
-	  if (!el) return;
-	  el.addEventListener('mouseenter', e => {
-	    tooltip.textContent = iconTooltips[id];
-	    tooltip.classList.add('show');
-	    updateTooltipPosition(e);
-	  });
-	  el.addEventListener('mousemove', e => updateTooltipPosition(e));
- 	  el.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
-	});
-	function updateTooltipPosition(e) {
-	  const offsetY = -20;
-	  tooltip.style.left = e.clientX + 'px';
-	  tooltip.style.top = e.clientY + offsetY + 'px';
-	}
+    // --- Tooltip ---
+    const tooltip = document.getElementById('iconTooltip');
+    
+    // Detect touch devices
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    if (!isTouchDevice) {  // Only enable tooltips on non-touch devices
+      const iconTooltips = {
+        infoIcon: 'About us',
+        clearIcon: 'Clear canvas',
+        saveIcon: 'Save doodle',
+        contactIcon: 'Contact us'
+      };
+    
+      Object.keys(iconTooltips).forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+    
+        el.addEventListener('mouseenter', e => {
+          tooltip.textContent = iconTooltips[id];
+          tooltip.classList.add('show');
+          updateTooltipPosition(e);
+        });
+    
+        el.addEventListener('mousemove', e => updateTooltipPosition(e));
+        el.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+      });
+    
+      function updateTooltipPosition(e) {
+        const offsetY = -20;
+        tooltip.style.left = e.clientX + 'px';
+        tooltip.style.top = e.clientY + offsetY + 'px';
+      }
+    }
   
     // --- Canvas Drawing ---
   const canvas = document.getElementById('drawCanvas');
