@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
-
-  <!-- Viewport for mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Page Title & Description -->
+  <!-- Page Title & Meta -->
   <title>HAM</title>
   <meta name="description" content="HAM is a two-person design team.">
-  <meta name="keywords" content="HAM, design team, design studio, creative direction, product design, UX, UI, web design, graphic design, web development, web design, illustration, interactive, Monina, Allen">
+  <meta name="keywords" content="HAM, design team, creative direction, product design, UX, UI, web design, graphic design, web development, illustration, interactive, Monina, Allen">
   <meta name="author" content="Monina & Allen">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
 
-  <!-- Open Graph / Social Sharing -->
+  <!-- Open Graph -->
   <meta property="og:title" content="HAM">
   <meta property="og:description" content="HAM is a two-person design team.">
   <meta property="og:type" content="website">
@@ -28,16 +27,14 @@
   <meta name="twitter:title" content="HAM">
   <meta name="twitter:description" content="HAM is a two-person design team.">
   <meta name="twitter:image" content="https://www.ham.work/assets/cover-image.png">
-  
-  <!-- Favicons -->
+
+  <!-- Favicons & Webclip -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="assets/favicon.png" sizes="32x32" type="image/png">
-
-  <!-- Webclip / Home Screen Icons -->
   <link rel="apple-touch-icon" href="assets/webclip.png" sizes="180x180">
   <link rel="icon" href="assets/webclip.png" sizes="192x192">
 
-  <!-- JSON-LD Structured Data -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -56,320 +53,201 @@
     }
   }
   </script>
-  
-      <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CLZLC24FTC"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-CLZLC24FTC');
-    </script>
 
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CLZLC24FTC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CLZLC24FTC');
+  </script>
 
-<style>
-  /* --- Font Variables --- */
-  :root {
-    --font-heading: "Fraunces", serif;   /* headings, letters */
-    --font-body: "Fraunces", serif;     /* paragraphs, tooltip, general text */
-  }
+  <!-- Styles -->
+  <style>
+    /* --- Font Variables --- */
+    :root {
+      --font-heading: "Fraunces", serif;
+      --font-body: "Fraunces", serif;
+    }
 
-  canvas {
-    cursor: pointer;
-  }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: var(--font-body);
+      background-color: #fff8e7;
+      position: relative;
+    }
 
-  /* Mailto link inside #contact */
-  #contact a[href^="mailto:"] {
-    color: #000000;
-    text-decoration: underline;
-    text-decoration-thickness: 1px; 
-    transition: color 0.2s ease, text-decoration-thickness 0.2s ease, font-weight 0.2s ease;
-    font-family: var(--font-body);
-    font-size: inherit;   
-    line-height: inherit;
-  }
+    canvas {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 60;
+    }
 
-  #contact a[href^="mailto:"]:hover,
-  #contact a[href^="mailto:"]:active {
-    color: #142F8C;
-    text-decoration-thickness: 1px;
-    font-weight: 400;
-  }
+    /* Letters */
+    #letters {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 20;
+    }
 
-  #iconTooltip {
-    position: fixed;
-    padding: 6px 16px;
-    background-color: rgba(0, 0, 0, 0.85);
-    color: white;
-    font-family: var(--font-body);
-    font-weight: 900;
-    font-style: italic;
-    font-size: .75rem;
-    border-radius: 99px;
-    white-space: nowrap;
-    pointer-events: none;
-    opacity: 0;
-    transform: translate(-50%, -100%) scale(0.8);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    z-index: 100;
-  }
+    #letters img {
+      position: absolute;
+      height: 250px;
+      transform-origin: center;
+      mix-blend-mode: multiply;
+      transition: transform 1s ease, opacity 1s ease;
+      font-family: var(--font-heading);
+    }
+
+    /* Temporary Message */
+    #tempMessage {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      font-family: var(--font-body);
+      font-size: 2rem;
+      width: 70%;
+      color: white;
+      mix-blend-mode: difference;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1s ease, transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      z-index: 200;
+    }
+
+    #tempMessage.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* About Section */
+    #about, #contact {
+      position: fixed;
+      bottom: -100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      max-width: 925px;
+      text-align: center;
+      z-index: 25;
+      font-family: var(--font-body);
+      transition: bottom 0.5s cubic-bezier(0.65,0,0.35,1), transform 0.5s cubic-bezier(0.65,0,0.35,1);
+    }
+
+    #about p, #contact p { margin: 0 0 1em; }
+
+    #about { font-weight: 400; font-style: normal; font-size: 2.1rem; line-height: 1.5; letter-spacing: -0.5px; mix-blend-mode: difference; color: white; }
+    #contact { font-size: 2rem; line-height: 1.5; }
+
+    #about.show, #contact.show {
+      bottom: 50%;
+      transform: translate(-50%, 50%);
+      transition: bottom 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    /* Mailto links */
+    #contact a[href^="mailto:"] {
+      color: #000;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      transition: color 0.2s ease, text-decoration-thickness 0.2s ease, font-weight 0.2s ease;
+      font-family: var(--font-body);
+      font-size: inherit;
+      line-height: inherit;
+    }
+
+    #contact a[href^="mailto:"]:hover,
+    #contact a[href^="mailto:"]:active {
+      color: #142F8C;
+      text-decoration-thickness: 1px;
+      font-weight: 400;
+    }
+
+    /* Icon Tooltip */
+    #iconTooltip {
+      position: fixed;
+      padding: 6px 16px;
+      background-color: rgba(0,0,0,0.85);
+      color: white;
+      font-family: var(--font-body);
+      font-weight: 900;
+      font-style: italic;
+      font-size: .75rem;
+      border-radius: 99px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transform: translate(-50%, -100%) scale(0.8);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 100;
+    }
 
     #iconTooltip.show {
       opacity: 1;
       transform: translate(-50%, -100%) scale(1);
     }
 
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    font-family: var(--font-body);
-    background-color: #fff8e7;
-    position: relative;
-  }
+    /* Icon Bar */
+    #iconBar { z-index: 70; position: fixed; display: flex; gap: 1rem; }
+    .icon { width: 80px; height: auto; position: fixed; cursor: pointer; }
+    #infoIcon { top: 4%; left: 2%; }
+    #contactIcon { bottom: 4%; left: 2%; }
+    #clearIcon { top: 4%; right: 2%; }
+    #saveIcon { bottom: 4%; right: 2%; }
 
-  canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 60; 
-  }
-
-  #letters {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 20;
-  }
-
-  #letters img {
-    position: absolute;
-    height: 250px;
-    transform-origin: center;
-    mix-blend-mode: multiply;
-    transition: transform 1s ease, opacity 1s ease;
-    font-family: var(--font-heading);
-  }
-  
-#tempMessage {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.8);
-  font-family: var(--font-body);
-  font-size: 2rem;
-  width: 70%;
-  color: white;
-  mix-blend-mode: difference;
-  text-align: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: 
-    opacity 1s ease, 
-    transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* bouncy easing */
-  z-index: 200;
-}
-
-#tempMessage.show {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-/* Responsive scaling for smaller screens */
-@media (max-width: 768px) {
-  #tempMessage {
-    width: 90%;
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  #tempMessage {
-    width: 90%;
-    font-size: 1.2rem;
-  }
-}
-
-  #about {
-    position: fixed;
-    bottom: -100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70%;
-    max-width: 925px;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 2.1rem;
-    line-height: 1.5;
-    letter-spacing: -0.5px;
-    mix-blend-mode: difference;
-    color: white;
-    z-index: 25;
-    text-align: center;
-    transition: bottom 0.5s cubic-bezier(0.65, 0, 0.35, 1),
-                transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
-    font-family: var(--font-body);
-  }
-
-  #about.show {
-    bottom: 50%;
-    transform: translate(-50%, 50%);
-    transition: bottom 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  #about p { margin: 0 0 1em; }
-
-  #contact {
-    position: fixed;
-    bottom: -100%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70%;
-    max-width: 925px;
-    font-size: 2rem;
-    line-height: 1.5;
-    letter-spacing: -0.5px;
-    z-index: 100;
-    text-align: center;
-    transition: bottom 0.5s cubic-bezier(0.65,0,0.35,1),
-                transform 0.5s cubic-bezier(0.65,0,0.35,1);
-    font-family: var(--font-body);
-  }
-
-  #contact.show {
-    bottom: 50%;
-    transform: translate(-50%, 50%);
-    transition: bottom 0.8s cubic-bezier(0.25,0.46,0.45,0.94),
-                transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
-  }
-
-  #contact p { margin: 0 0 1em; }
-
-/* --- Icon Bar --- */
-#iconBar {
-  z-index: 70;
-  position: fixed;
-  display: flex;
-  gap: 1rem;
-}
-
-/* Desktop (default): icons in corners */
-.icon {
-  width: 80px;
-  height: auto;
-  position: fixed;
-  cursor: pointer;
-}
-
-#infoIcon   { top: 4%; left: 2%; }
-#contactIcon{ bottom: 4%; left: 2%; }
-#clearIcon  { top: 4%; right: 2%; }
-#saveIcon   { bottom: 4%; right: 2%; }
-
-/* --- Mobile / Tablet --- */
-@media (max-width: 820px) { /* slightly larger than 768 to cover modern iPhones */
-  #iconBar {
-    bottom: 2%;
-    left: 50%;
-    transform: translateX(-50%);
-    justify-content: center;
-    flex-wrap: nowrap;
-  }
-
-  .icon {
-    position: static; /* icons are now inside the flex container */
-    width: 60px;
-  }
-}
-
-  #grainOverlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 80;
-    pointer-events: none;
-    opacity: 0.09;
-    background: url('Grain.gif') repeat;
-  }
-
-  /* --- Responsive --- */
-  @media (max-width: 1600px) {
-    #about {
-      width: 80%;
-      font-size: 1.8rem;
-      line-height: 1.5;
-    }
-  }
-
-  @media (max-width: 768px) {
-    #letters img { height: 250px; }
-
-
-
-    #about {
-      width: 80%;
-      font-size: 1.5rem;
-      line-height: 1.6;
+    /* Grain Overlay */
+    #grainOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 80;
+      pointer-events: none;
+      opacity: 0.09;
+      background: url('Grain.gif') repeat;
     }
 
-    .icon { position: static; width: 60px; }
-  }
-
-  @media (max-width: 480px) {
-    #letters img { height: 150px; }
-    #about { font-size: 1rem; }
-  }
-
-  @media (max-height: 700px) {
-    #about { font-size: 1rem; }
-  }
-
-  @media (max-height: 500px) {
-    #about { font-size: .8rem; }
-  }
-
-  /* --- Responsive for #contact --- */
-  @media (max-width: 1024px) {
-    #contact {
-      width: 70%;
-      font-size: 1.8rem;
-      line-height: 1.5;
+    /* --- Responsive --- */
+    @media (max-width: 820px) {
+      #iconBar { bottom: 2%; left: 50%; transform: translateX(-50%); justify-content: center; flex-wrap: nowrap; }
+      .icon { position: static; width: 60px; }
     }
-  }
 
-  @media (max-width: 768px) {
-    #contact {
-      width: 70%;
-      font-size: 1.7rem;
-      line-height: 1.4;
+    @media (max-width: 768px) {
+      #letters img { height: 250px; }
+      #about { width: 80%; font-size: 1.5rem; line-height: 1.6; }
+      #contact { width: 70%; font-size: 1.7rem; line-height: 1.4; }
     }
-  }
 
-  @media (max-width: 480px) {
-    #contact {
-      width: 85%;
-      font-size: 1.2rem;
-      line-height: 1.4;
+    @media (max-width: 480px) {
+      #letters img { height: 150px; }
+      #about { font-size: 1rem; }
+      #contact { width: 85%; font-size: 1.2rem; line-height: 1.4; }
     }
-  }
 
-  @media (max-height: 700px) {
-    #contact { font-size: 1.7rem; }
-  }
+    @media (max-height: 700px) {
+      #about { font-size: 1rem; }
+      #contact { font-size: 1.7rem; }
+    }
 
-  @media (max-height: 500px) {
-    #contact { font-size: .85rem; }
-  }
-</style>
-
+    @media (max-height: 500px) {
+      #about { font-size: .8rem; }
+      #contact { font-size: .85rem; }
+    }
+  </style>
 </head>
-<body>
 
-	<div id="iconTooltip"></div>
+<body>
+  <div id="iconTooltip"></div>
   <canvas id="drawCanvas"></canvas>
 
   <div id="letters">
@@ -378,15 +256,15 @@
     <img src="assets/M.gif" alt="M">
   </div>
 
-    <div id="tempMessage">Take a moment to doodle.</div>
+  <div id="tempMessage">Take a moment to doodle.</div>
 
   <div id="about">
-    <p>Hi, we’re <i>Monina</i> and <i>Allen</i>, and we run <i>HAM</i>, a two-person design&nbsp;team. To us, good design works, it’s made with care, and it&nbsp;lasts. We’ve worked at places like the <i>New York Times</i>, <i>Block</i>, <i>FiftyThree</i>, and <i>WeTransfer</i>, and teamed up with everyone from big names like <i>Microsoft</i> and <i>Starbucks</i> to people just starting&nbsp;out. If you’ve got an idea or a story, we’d love to help bring it to&nbsp;life.</p>  
-</div>
-  
+    <p>Hi, we’re <i>Monina</i> and <i>Allen</i>, and we run <i>HAM</i>, a two-person design&nbsp;team. To us, good design works, it’s made with care, and it&nbsp;lasts. We’ve worked at places like the <i>New York Times</i>, <i>Block</i>, <i>FiftyThree</i>, and <i>WeTransfer</i>, and teamed up with everyone from big names like <i>Microsoft</i> and <i>Starbucks</i> to people just starting&nbsp;out. If you’ve got an idea or a story, we’d love to help bring it to&nbsp;life.</p>
+  </div>
+
   <div id="contact">
-  <p>Whether you’ve got a question, an idea, or just want to say hello, we’d love to hear from&nbsp;you. Drop us a line at <i><a href="mailto:hello@ham.work">hello@ham.work</a></i> and we’ll be in touch&nbsp;soon.</p>
-</div>
+    <p>Whether you’ve got a question, an idea, or just want to say hello, we’d love to hear from&nbsp;you. Drop us a line at <i><a href="mailto:hello@ham.work">hello@ham.work</a></i> and we’ll be in touch&nbsp;soon.</p>
+  </div>
 
   <div id="iconBar">
     <img id="infoIcon" class="icon" src="assets/info.png" alt="Info">
@@ -397,43 +275,41 @@
 
   <div id="grainOverlay"></div>
 
-  <script>
-    // --- Tooltip ---
-    const tooltip = document.getElementById('iconTooltip');
-    
-    // Detect touch devices
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    
-    if (!isTouchDevice) {  // Only enable tooltips on non-touch devices
-      const iconTooltips = {
-        infoIcon: 'About us',
-        clearIcon: 'Clear canvas',
-        saveIcon: 'Save doodle',
-        contactIcon: 'Contact us'
-      };
-    
-      Object.keys(iconTooltips).forEach(id => {
-        const el = document.getElementById(id);
-        if (!el) return;
-    
-        el.addEventListener('mouseenter', e => {
-          tooltip.textContent = iconTooltips[id];
-          tooltip.classList.add('show');
-          updateTooltipPosition(e);
-        });
-    
-        el.addEventListener('mousemove', e => updateTooltipPosition(e));
-        el.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+<script>
+  // --- Tooltip ---
+  const tooltip = document.getElementById('iconTooltip');
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  if (!isTouchDevice) {
+    const iconTooltips = {
+      infoIcon: 'About us',
+      clearIcon: 'Clear canvas',
+      saveIcon: 'Save doodle',
+      contactIcon: 'Contact us'
+    };
+
+    Object.keys(iconTooltips).forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      el.addEventListener('mouseenter', e => {
+        tooltip.textContent = iconTooltips[id];
+        tooltip.classList.add('show');
+        updateTooltipPosition(e);
       });
-    
-      function updateTooltipPosition(e) {
-        const offsetY = -20;
-        tooltip.style.left = e.clientX + 'px';
-        tooltip.style.top = e.clientY + offsetY + 'px';
-      }
+
+      el.addEventListener('mousemove', e => updateTooltipPosition(e));
+      el.addEventListener('mouseleave', () => tooltip.classList.remove('show'));
+    });
+
+    function updateTooltipPosition(e) {
+      const offsetY = -20;
+      tooltip.style.left = e.clientX + 'px';
+      tooltip.style.top = e.clientY + offsetY + 'px';
     }
-  
-    // --- Canvas Drawing ---
+  }
+
+  // --- Canvas Drawing ---
   const canvas = document.getElementById('drawCanvas');
   const ctx = canvas.getContext('2d');
   let width = window.innerWidth;
@@ -458,24 +334,24 @@
     return 20 + Math.random() * 30;
   }
 
-	function drawStroke(pts, color, width, ctxToUse = ctx) {
- 	 if (pts.length < 2) return;
-	  ctxToUse.save();
-	  ctxToUse.strokeStyle = color;
-	  ctxToUse.lineWidth = width;
-	  ctxToUse.lineCap = "round";
-	  ctxToUse.lineJoin = "round";
-	  ctxToUse.globalCompositeOperation = "multiply";
-	  ctxToUse.beginPath();
-	  ctxToUse.moveTo(pts[0].x, pts[0].y);
-	  for (let i = 1; i < pts.length - 2; i++) {
-	    const xc = (pts[i].x + pts[i + 1].x) / 2;
-	    const yc = (pts[i].y + pts[i + 1].y) / 2;
-    	ctxToUse.quadraticCurveTo(pts[i].x, pts[i].y, xc, yc);
-  		}
-  		ctxToUse.stroke();
-  		ctxToUse.restore();
-	}
+  function drawStroke(pts, color, width, ctxToUse = ctx) {
+    if (pts.length < 2) return;
+    ctxToUse.save();
+    ctxToUse.strokeStyle = color;
+    ctxToUse.lineWidth = width;
+    ctxToUse.lineCap = "round";
+    ctxToUse.lineJoin = "round";
+    ctxToUse.globalCompositeOperation = "multiply";
+    ctxToUse.beginPath();
+    ctxToUse.moveTo(pts[0].x, pts[0].y);
+    for (let i = 1; i < pts.length - 2; i++) {
+      const xc = (pts[i].x + pts[i + 1].x) / 2;
+      const yc = (pts[i].y + pts[i + 1].y) / 2;
+      ctxToUse.quadraticCurveTo(pts[i].x, pts[i].y, xc, yc);
+    }
+    ctxToUse.stroke();
+    ctxToUse.restore();
+  }
 
   function redraw() {
     ctx.clearRect(0, 0, width, height);
@@ -497,17 +373,23 @@
     points = [{ x: e.offsetX, y: e.offsetY }];
     pickNewColor();
   });
+
   canvas.addEventListener('mousemove', e => {
     if (!drawing) return;
     points.push({ x: e.offsetX, y: e.offsetY });
     redraw();
   });
+
   canvas.addEventListener('mouseup', () => {
     drawing = false;
     if (points.length > 1) strokes.push({ points: [...points], color: currentColor, width: currentWidth });
     points = [];
   });
-  canvas.addEventListener('mouseleave', () => { drawing = false; points = []; });
+
+  canvas.addEventListener('mouseleave', () => {
+    drawing = false;
+    points = [];
+  });
 
   // Touch events
   canvas.addEventListener('touchstart', e => {
@@ -518,6 +400,7 @@
     points = [{ x: touch.clientX - rect.left, y: touch.clientY - rect.top }];
     pickNewColor();
   });
+
   canvas.addEventListener('touchmove', e => {
     e.preventDefault();
     if (!drawing) return;
@@ -526,6 +409,7 @@
     points.push({ x: touch.clientX - rect.left, y: touch.clientY - rect.top });
     redraw();
   });
+
   canvas.addEventListener('touchend', () => {
     drawing = false;
     if (points.length > 1) strokes.push({ points: [...points], color: currentColor, width: currentWidth });
@@ -548,9 +432,9 @@
     link.click();
   });
 
-  // --- Letters Animation Settings ---
+  // --- Letters Animation ---
   const LETTERS_CONFIG = {
-    enableAnimation: true,            // <-- set to false to stop all letter movement
+    enableAnimation: true,
     speedRange: [0.05, 0.15],
     angleRange: [-30, 30],
     repulsionDistance: 100,
@@ -560,7 +444,6 @@
     hideTransition: "transform 1s ease, opacity 1s ease"
   };
 
-  // --- HAM Letters Animation ---
   const letterImgs = Array.from(document.querySelectorAll('#letters img'));
 
   class Letter {
@@ -648,7 +531,6 @@
 
   animate();
 
-  // --- Show / Hide Letters ---
   function getRandomDirection() {
     const angle = Math.random() * 2 * Math.PI;
     const distance = Math.max(window.innerWidth, window.innerHeight) * LETTERS_CONFIG.hideTranslateDistance;
@@ -681,128 +563,87 @@
       }, 50);
     });
   }
+
   // --- Icon Hover ---
   const icons = [
-    { id: 'clearIcon',   png: 'assets/clear.png',   gif: 'assets/clear.gif' },
-    { id: 'saveIcon',    png: 'assets/save.png',    gif: 'assets/save.gif' },
+    { id: 'clearIcon', png: 'assets/clear.png', gif: 'assets/clear.gif' },
+    { id: 'saveIcon', png: 'assets/save.png', gif: 'assets/save.gif' },
     { id: 'contactIcon', png: 'assets/contact.png', gif: 'assets/contact.gif' },
-    { id: 'infoIcon',    png: 'assets/info.png',    gif: 'assets/info.gif' }
+    { id: 'infoIcon', png: 'assets/info.png', gif: 'assets/info.gif' }
   ];
+
   icons.forEach(icon => {
     const el = document.getElementById(icon.id);
     if (!el) return;
     el.addEventListener('mouseenter', () => el.src = icon.gif);
     el.addEventListener('mouseleave', () => el.src = icon.png);
     el.addEventListener('mousedown', () => el.src = icon.gif);
-    el.addEventListener('mouseup',   () => el.src = icon.gif);
+    el.addEventListener('mouseup', () => el.src = icon.gif);
   });
 
-  // --- About Toggle with Letters ---
-  function getRandomDirection() {
-    const angle = Math.random() * 2 * Math.PI;
-    const distance = Math.max(window.innerWidth, window.innerHeight) * 1.5;
-    return {
-      x: Math.cos(angle) * distance,
-      y: Math.sin(angle) * distance,
-      angle: (Math.random() * 360) - 180
-    };
-  }
+  // --- About & Contact Toggle ---
+  const about = document.getElementById('about');
+  const contact = document.getElementById('contact');
+  const infoIcon = document.getElementById('infoIcon');
+  const contactIcon = document.getElementById('contactIcon');
 
   let aboutVisible = true;
-  const about = document.getElementById('about');
-  const infoIcon = document.getElementById('infoIcon');
-    window.addEventListener('DOMContentLoaded', () => {
-      // Temporarily disable transition so it shows immediately
-      about.style.transition = 'none';
-      about.classList.add('show');
-      
-      // Force a reflow so the style applies instantly
-      void about.offsetWidth;
-    
-      // Restore the transition for future toggles
-      about.style.transition = '';
-    });
+  let contactVisible = false;
+  let tempMessageShown = false;
 
-  function hideLetters() {
-    letters.forEach(l => {
-      const dir = getRandomDirection();
-      l.img.style.transition = "transform 1s ease, opacity 1s ease";
-      l.img.style.opacity = "0";
-      l.img.style.transform = `translate(${dir.x}px, ${dir.y}px) rotate(${dir.angle}deg)`;
-    });
+  function showTempMessage() {
+    const tempMessage = document.getElementById('tempMessage');
+    if (!tempMessageShown) {
+      tempMessageShown = true;
+      tempMessage.classList.add('show');
+      setTimeout(() => tempMessage.classList.remove('show'), 4000);
+    }
   }
 
-  function showLetters() {
-    letters.forEach(l => {
-      const dir = getRandomDirection();
-      l.img.style.transition = "none";
-      l.img.style.opacity = "0";
-      l.img.style.transform = `translate(${dir.x}px, ${dir.y}px) rotate(${dir.angle}deg)`;
-      setTimeout(() => {
-        l.img.style.transition = "transform 1s ease, opacity 1s ease";
-        l.img.style.opacity = "1";
-        l.img.style.transform = `translate(0, 0) rotate(${l.angle}deg)`;
-      }, 50);
-    });
-  }
-
-    const contact = document.getElementById('contact');
-    const contactIcon = document.getElementById('contactIcon');
-    let contactVisible = false;
-    
-    
-    let tempMessageShown = false;
-
-function showTempMessage() {
-  const tempMessage = document.getElementById('tempMessage');
-  if (!tempMessageShown) {
-    tempMessageShown = true;
-    tempMessage.classList.add('show');
-    setTimeout(() => {
-      tempMessage.classList.remove('show');
-    }, 4000); // fades out after 4 seconds
-  }
-}
-    
-    // About icon click
-infoIcon.addEventListener('click', () => {
-  if (contactVisible) {
-    contact.classList.remove('show');
-    hideLetters();
-    contactVisible = false;
-  }
-
-  if (aboutVisible) {
-    about.classList.remove('show');
-    hideLetters();
-    showTempMessage();
-    aboutVisible = false;
-  } else {
+  window.addEventListener('DOMContentLoaded', () => {
+    about.style.transition = 'none';
     about.classList.add('show');
-    showLetters();
-    aboutVisible = true;
-  }
-});
-    
-// Contact icon click
-contactIcon.addEventListener('click', () => {
-  if (aboutVisible) {
-    about.classList.remove('show');
-    hideLetters();
-    aboutVisible = false;
-  }
+    void about.offsetWidth;
+    about.style.transition = '';
+  });
 
-  if (contactVisible) {
-    contact.classList.remove('show');
-    hideLetters();
-    showTempMessage();
-    contactVisible = false;
-  } else {
-    contact.classList.add('show');
-    showLetters();
-    contactVisible = true;
-  }
-});
-  </script>
+  infoIcon.addEventListener('click', () => {
+    if (contactVisible) {
+      contact.classList.remove('show');
+      hideLetters();
+      contactVisible = false;
+    }
+
+    if (aboutVisible) {
+      about.classList.remove('show');
+      hideLetters();
+      showTempMessage();
+      aboutVisible = false;
+    } else {
+      about.classList.add('show');
+      showLetters();
+      aboutVisible = true;
+    }
+  });
+
+  contactIcon.addEventListener('click', () => {
+    if (aboutVisible) {
+      about.classList.remove('show');
+      hideLetters();
+      aboutVisible = false;
+    }
+
+    if (contactVisible) {
+      contact.classList.remove('show');
+      hideLetters();
+      showTempMessage();
+      contactVisible = false;
+    } else {
+      contact.classList.add('show');
+      showLetters();
+      contactVisible = true;
+    }
+  });
+</script>
 </body>
 </html>
