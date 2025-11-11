@@ -442,7 +442,7 @@
     const exportCtx = exportCanvas.getContext('2d');
     exportCanvas.width = width;
     exportCanvas.height = height;
-    exportCtx.fillStyle = '#fff8e7';
+    exportCtx.fillStyle = '#ffffff';
     exportCtx.fillRect(0, 0, width, height);
     strokes.forEach(s => drawStroke(s.points, s.color, s.width, exportCtx));
     const link = document.createElement('a');
