@@ -139,12 +139,13 @@
       width: 70%;
       max-width: 925px;
       text-align: center;
-      z-index: 25;
+      z-index: 1000;
       font-family: var(--font-body);
       transition: bottom 0.5s cubic-bezier(0.65,0,0.35,1), transform 0.5s cubic-bezier(0.65,0,0.35,1);
+      pointer-events: auto;  /* allow clicks */
     }
 
-    #about p, #contact p { margin: 0 0 1em; }
+    #about p, #contact p { margin: 0 0 1em; pointer-events: auto;  /* allow clicks on text */ }
 
     #about { font-weight: 400; font-style: normal; font-size: 2.1rem; line-height: 1.5; letter-spacing: -0.5px; mix-blend-mode: difference; color: white; }
     #contact { font-size: 2rem; line-height: 1.5; }
@@ -164,6 +165,8 @@
       font-family: var(--font-body);
       font-size: inherit;
       line-height: inherit;
+      pointer-events: auto; /* make the link clickable */
+      cursor: pointer;       /* show pointer cursor */
     }
 
     #contact a[href^="mailto:"]:hover,
