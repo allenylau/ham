@@ -25,7 +25,7 @@ window.SELECTED_WORK = [
     "category": ["Brand", "Marketing"],
     "color": "#3c8aff",
     "url": "https://www.dreamhampton.com"
-  }/*,
+  },
   {
     "src": "./selected-work/03-TGA/01-TGA.jpg",
     "slides": [
@@ -37,20 +37,20 @@ window.SELECTED_WORK = [
     ],
     "title": "The Gift Advisory",
     "alt": "The Gift Advisory",
-    "category": ["Brand", "Marketing"],
-    "color": "#ffbe2e",
+    "category": ["Brand", "Website"],
+    "color": "#93a9ce",
     "url": "https://www.thegiftadvisory.com",
-    "featured": true
+    /*"featured": true*/
   },
   {
-    "src": "./selected-work/04-work.png",
-    "slides": ["./selected-work/04-work.png"],
-    "title": "Could be you",
-    "alt": "Work 04",
-    "category": ["Print", "Branding"],
-    "color": "#ff6b4a",
+    "src": "./selected-work/coming-soon.png",
+    "slides": ["./selected-work/coming-soon.png"],
+    "title": "",
+    "alt": "",
+    "category": [],
+    "color": "#f08bb7",
     "url": ""
-  },
+  }/*,
   {
     "src": "./selected-work/05-work.png",
     "slides": ["./selected-work/05-work.png"],
