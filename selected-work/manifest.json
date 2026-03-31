@@ -1,0 +1,50 @@
+[
+  {
+    "src": "./selected-work/01-work.png",
+    "label": "Work",
+    "title": "Work",
+    "alt": "Work"
+  },
+  {
+    "src": "./selected-work/02-work.png",
+    "label": "Work",
+    "title": "Work",
+    "alt": "Work"
+  },
+  {
+    "src": "./selected-work/03-work.png",
+    "label": "Work",
+    "title": "Work",
+    "alt": "Work"
+  },
+  {
+    "src": "./selected-work/04-work.png",
+    "label": "Work",
+    "title": "Work",
+    "alt": "Work"
+  },
+   {
+    "src": "./selected-work/05-work.png",
+    "label": "Work",
+    "title": "Work",
+    "alt": "Work"
+  },
+   {
+    "src": "./selected-work/06-work.png",
+    "label": "Work",
+    "title": "Work",
+    "alt": "Work"
+  },
+   {
+    "src": "./selected-work/07-work.png",
+    "label": "Work",
+    "title": "Work",
+    "alt": "Work"
+  },
+   {
+    "src": "./selected-work/08-work.png",
+    "label": "Work",
+    "title": "Work",
+    "alt": "Work"
+  }
+]

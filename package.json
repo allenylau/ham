@@ -1,0 +1,7 @@
+{
+  "name": "ham-site",
+  "private": true,
+  "scripts": {
+    "refresh-work": "node scripts/generate-work-manifest.mjs"
+  }
+}
