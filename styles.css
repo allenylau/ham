@@ -938,7 +938,7 @@ body::before {
     white-space: normal;
     letter-spacing: 0.02em;
     overflow-wrap: break-word;
-    -webkit-text-stroke-width: 4px;
+    -webkit-text-stroke-width: 3px;
   }
 
   .clock-time {
