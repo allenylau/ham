@@ -475,6 +475,19 @@ body::before {
   transform: scale(1.04);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .work-slide-counter,
+  .work-visit {
+    opacity: 0;
+    transition: opacity 150ms ease, transform 150ms ease;
+  }
+
+  .work-card:hover .work-slide-counter,
+  .work-card:hover .work-visit {
+    opacity: 1;
+  }
+}
+
 /* Slide transitions */
 .work-slide-enter,
 .work-slide-exit {
