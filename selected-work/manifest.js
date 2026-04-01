@@ -9,7 +9,7 @@ window.SELECTED_WORK = [
     ],
     "title": "Pink Gators",
     "alt": "Pink Gators",
-    "category": ["Brand", "Marketing"],
+    "category": ["Brand", "Website"],
     "color": "#fc4020",
     "url": "https://www.pink-gators.com"
   },
@@ -22,7 +22,7 @@ window.SELECTED_WORK = [
     ],
     "title": "dream hampton",
     "alt": "dream hampton",
-    "category": ["Brand", "Marketing"],
+    "category": ["Brand", "Website"],
     "color": "#3c8aff",
     "url": "https://www.dreamhampton.com"
   },
