@@ -573,6 +573,21 @@ setInterval(() => {
   updateAnalogClock();
 }, 1000);
 
+function positionTooltip(tip, x, y) {
+  const margin = 8;
+  tip.style.left = "0px";
+  tip.style.top = "0px";
+
+  const rect = tip.getBoundingClientRect();
+  const maxLeft = window.innerWidth - rect.width - margin;
+  const maxTop = window.innerHeight - rect.height - margin;
+  const left = Math.min(Math.max(margin, x), Math.max(margin, maxLeft));
+  const top = Math.min(Math.max(margin, y), Math.max(margin, maxTop));
+
+  tip.style.left = `${left}px`;
+  tip.style.top = `${top}px`;
+}
+
 (function initGooglyEyes() {
   const eyes = [
     document.getElementById("eye-left"),
@@ -641,12 +656,10 @@ setInterval(() => {
       if (!text) return;
       hamTip.textContent = text;
       hamTip.style.opacity = "1";
-      hamTip.style.left = e.clientX + 12 + "px";
-      hamTip.style.top  = e.clientY - 28 + "px";
+      positionTooltip(hamTip, e.clientX + 12, e.clientY - 28);
     });
     el.addEventListener("mousemove", (e) => {
-      hamTip.style.left = e.clientX + 12 + "px";
-      hamTip.style.top  = e.clientY - 28 + "px";
+      positionTooltip(hamTip, e.clientX + 12, e.clientY - 28);
     });
     el.addEventListener("mouseleave", () => { hamTip.style.opacity = "0"; });
   });
@@ -782,8 +795,7 @@ setInterval(() => {
   }
 
   function move(e) {
-    tip.style.left = e.clientX + 12 + "px";
-    tip.style.top  = e.clientY - 28 + "px";
+    positionTooltip(tip, e.clientX + 12, e.clientY - 28);
   }
 
   spans.forEach((el) => {
